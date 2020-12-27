@@ -1,5 +1,15 @@
 <template>
   <div>
+      <div>
+    <h2>イベントのフォーム</h2>
+    <label for="title">タイトル</label>
+    <input type="text" id="title" v-model="eventData.title">
+    <p>{{ eventData.title }}</p>
+    <h2>Lazyのフォーム２</h2>
+    <label for="title2">タイトル２</label>
+    <input type="text" id="title2" v-model.lazy="eventLazy.title">
+    <p>{{ eventLazy.title }}</p>
+  </div>
   <LikeHeader >
     <h2>皆さん</h2>
     <template v-slot:title="slotProps">
@@ -23,6 +33,7 @@
   <keep-alive>
     <component v-bind:is="currentComponent"></component>
   </keep-alive>
+
   </div>
 </template>
 
@@ -36,7 +47,13 @@ import Home from "./components/Home.vue";
     data() {
       return {
         number:10,
-        currentComponent: "Home"
+        currentComponent: "Home",
+        eventData: {
+          title: "タイトル"
+        },
+        eventLazy: {
+          title: "タイトル"
+        }
       }
     },
     components: {
