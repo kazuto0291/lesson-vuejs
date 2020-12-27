@@ -4,6 +4,10 @@ import LikeNumber from "./components/LikeNumber.vue"
 
 Vue.config.productionTip = false
 Vue.component('LikeNumber', LikeNumber);
+Vue.filter("upperCase", function(value) {
+  console.log('フィルタ')
+  return value.toUpperCase();
+})
 // Vue.directive("border", {
 //   bind(el, binding, vnode) {
 //     // ディレクティブが初めて対象の要素に紐付いた時(最初の一回)
@@ -22,19 +26,19 @@ Vue.component('LikeNumber', LikeNumber);
 //   }
 // });
 
-Vue.directive("border", function(el, binding) {
-  // この関数の中がbindとupdateの両方に適用される
-  el.style.border = "solid black 2px";
-  el.style.borderWidth =binding.value.width;
-  el.style.borderColor = binding.value.color;
-  el.style.borderStyle = binding.arg;
-  if (binding.modifiers.round) {
-    el.style.borderRadius ="0.5rem"
-  }
-  if (binding.modifiers.shadow) {
-    el.style.boxShadow = "0 2px 5px rgba(0,0,0,0.50)"
-  }
-});
+// Vue.directive("border", function(el, binding) {
+//   // この関数の中がbindとupdateの両方に適用される
+//   el.style.border = "solid black 2px";
+//   el.style.borderWidth =binding.value.width;
+//   el.style.borderColor = binding.value.color;
+//   el.style.borderStyle = binding.arg;
+//   if (binding.modifiers.round) {
+//     el.style.borderRadius ="0.5rem"
+//   }
+//   if (binding.modifiers.shadow) {
+//     el.style.boxShadow = "0 2px 5px rgba(0,0,0,0.50)"
+//   }
+// });
 
 new Vue({
   render: h => h(App),
