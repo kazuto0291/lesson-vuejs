@@ -20,7 +20,9 @@
   <LikeNumber :totalNumber="number" v-on:my-click="number = $event"></LikeNumber>
   <button @click="currentComponent = 'Home'">Home</button>
   <button @click="currentComponent = 'About'">About</button>
-  <component v-bind:is="currentComponent"></component>
+  <keep-alive>
+    <component v-bind:is="currentComponent"></component>
+  </keep-alive>
   </div>
 </template>
 
