@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot name="title"></slot>
+    <slot name="title" v-bind:user="user" text="text"></slot>
     <hr>
     <slot></slot>
     <!--propsはデータやstringが送れる slotはhtmlのテンプレート自体をすべて送れる -->
@@ -12,7 +12,14 @@
 
 <script>
 export default {
-  props: ["headerText"]
+  data() {
+    return {
+      user: {
+        firstName: "Jack",
+        lastName: "Donald"
+      }
+    }
+  }
 }
 </script>
 
