@@ -1,9 +1,27 @@
 <template>
   <div>
     <div class="main">
+      <button @click="myAnimation = 'slide'">Slide</button>
+      <button @click="myAnimation = 'fade'">Fade</button>
+      <p>{{ myAnimation }}</p>
       <button @click="show = !show">切り替え</button>
-      <transition name="fade">
+      <transition name="fade" mode="out-in">
+        <p v-if="show" key="bye">さよなら</p>
+        <p v-if="!show" key="hello">こんにちは</p>
+      </transition>
+      <transition
+        name="fade"
+        enter-class=""
+        enter-active-class="animate__animated animate__bounce"
+        enter-to-class=""
+        leave-class=""
+        leave-active-class=""
+        leave-to-class=""
+        >
         <p v-if="show">hello</p>
+      </transition>
+      <transition :name="myAnimation"  appear>
+        <p v-if="show">bye</p>
       </transition>
     </div>
     <hr>
@@ -98,6 +116,7 @@ import EventTitle from "./components/EventTitle.vue"
     data() {
       return {
         show: true,
+        myAnimation: "slide",
         number:10,
         currentComponent: "Home",
         locations: ["東京","神奈川", "大阪", "北海道", "奈良", "京都", "名古屋"],
@@ -133,7 +152,7 @@ import EventTitle from "./components/EventTitle.vue"
   }
   .fade-enter-active {
   /* 現れるときのトランジションの状態 */
-  transition: opacity 2s;
+  transition: opacity 5s;
   }
   .fade-enter-to {
   /* 現れるときの最後の状態 */
@@ -145,11 +164,42 @@ import EventTitle from "./components/EventTitle.vue"
   }
   .fade-leave-active {
   /* 消えるときのトランジションの状態 */
-  transition: opacity 2s;
+  transition: opacity 5s;
   }
   .fade-leave-to {
   /* 消えるときの最後の状態 */
   opacity: 0;
+  }
+
+
+  .slide-enter {
+    opacity: 0;
+  }
+  .slide-enter-active {
+    animation: slide-in 0.5s;
+    transition: opacity 5s;
+  }
+  .slide-enter-to {
+
+  }
+  .slide-leave {
+
+  }
+  .slide-leave-active {
+    animation: slide-in 0.5s reverse;
+    transition: opacity 5s;
+  }
+  .slide-leave-to {
+    opacity: 0;
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateX(100px);
+    }
+    to {
+      transform: translateX(0);
+    }
   }
 
   div {
