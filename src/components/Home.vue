@@ -9,23 +9,25 @@
     <p>{{ subTitle | upperCase |lowerCase }}</p>
     <h2>{{ number }}</h2>
     <button @click="number++">+1</button>
+    <hr>
+    <CountNumber></CountNumber>
   </div>
 </template>
 
 <script>
+import CountNumber from "./CountNumber.vue";
+import { tokyoNumber } from "@/tokyoNumber"
+
+
 export default {
+  mixins: [tokyoNumber],
   data() {
     return {
-      temData: "hello",
-      title: "Welcome to Tokyo",
-      subTitle: "Tokyo is a great city",
-      number: 0
-    };
-  },
-  filters: {
-    lowerCase(value) {
-      return value.toLowerCase();
+      temData: "hello"
     }
+  },
+  components: {
+    CountNumber
   },
   directives: {
     border(el, binding) {
@@ -41,8 +43,7 @@ export default {
         el.style.boxShadow = "0 2px 5px rgba(0,0,0,0.50)"
       }
     }
-  }
-
+  },
 }
 </script>
 
