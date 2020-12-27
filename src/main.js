@@ -8,6 +8,11 @@ Vue.filter("upperCase", function(value) {
   // console.log('フィルタ')
   return value.toUpperCase();
 })
+Vue.mixin({
+  created() {
+    console.log("global mixin")
+  }
+})
 // Vue.directive("border", {
 //   bind(el, binding, vnode) {
 //     // ディレクティブが初めて対象の要素に紐付いた時(最初の一回)
