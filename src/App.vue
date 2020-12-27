@@ -12,6 +12,7 @@
       <h1>トータルのいいね数</h1>
       <h2>{{ number }}</h2>
     </template>
+    <!-- <template v-slot:[title]></template> -->
   </LikeHeader>
   <!-- 子コンポーネントにデータを渡す送り口 -->
   <LikeNumber v-bind:totalNumber="number" ></LikeNumber>
@@ -26,7 +27,8 @@ import LikeHeader from  "./components/LikeHeader.vue"
   export default {
     data() {
       return {
-        number:10
+        number:10,
+        title:"title"
       }
     },
     components: {
