@@ -18,21 +18,29 @@
   <LikeNumber v-bind:totalNumber="number" ></LikeNumber>
   <!-- 子コンポーネントからデータをもらう受け口 v-on:自分で作ったemit名 = $event(データ)-->
   <LikeNumber :totalNumber="number" v-on:my-click="number = $event"></LikeNumber>
+  <button @click="currentComponent = 'Home'">Home</button>
+  <button @click="currentComponent = 'About'">About</button>
+  <component v-bind:is="currentComponent"></component>
   </div>
 </template>
 
 <script>
-import LikeHeader from  "./components/LikeHeader.vue"
+import LikeHeader from  "./components/LikeHeader.vue";
+import About from "./components/About.vue";
+import Home from "./components/Home.vue";
+
 
   export default {
     data() {
       return {
         number:10,
-        title:"title"
+        currentComponent: "Home"
       }
     },
     components: {
-      LikeHeader: LikeHeader
+      LikeHeader: LikeHeader,
+      About: About,
+      Home: Home
     }
 
   }
