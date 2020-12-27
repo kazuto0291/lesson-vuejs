@@ -4,7 +4,7 @@
     <h2>イベントのフォーム</h2>
     <label for="title">タイトル</label>
     <input type="text" id="title" v-model="eventData.title">
-    <p>{{ eventData.title }}</p>
+    <pre>{{ eventData.title }}</pre>
     <h2>Lazyのフォーム２</h2>
     <label for="title2">タイトル２</label>
     <input type="text" id="title2" v-model.lazy="eventLazy.title">
@@ -13,6 +13,10 @@
     <label for="maxNumber">最大人数</label>
     <input type="number" id="maxNumber" v-model.number ="eventData.maxNumber">
     <p>{{ typeof eventData.maxNumber }}</p>
+    <h2>trimフォーム</h2>
+    <label for="host">主催者</label>
+    <input type="text" id="host" v-model.trim ="eventData.host">
+    <pre>{{ eventData.host }}</pre>
   </div>
   <LikeHeader >
     <h2>皆さん</h2>
@@ -54,7 +58,8 @@ import Home from "./components/Home.vue";
         currentComponent: "Home",
         eventData: {
           title: "タイトル",
-          maxNumber: 0
+          maxNumber: 0,
+          host:""
         },
         eventLazy: {
           title: "タイトル"
