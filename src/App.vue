@@ -1,7 +1,17 @@
 <template>
   <div>
-  <LikeHeader></LikeHeader>
-  <h2>{{ number }}</h2>
+  <LikeHeader >
+    <h2>皆さん</h2>
+    <template v-slot:title>
+      <h2>こんにちは</h2>
+    </template>
+    <h3>はじめまして</h3>
+    <p>よろしくお願いいたします。</p>
+    <template v-slot:number>
+      <h1>トータルのいいね数</h1>
+      <h2>{{ number }}</h2>
+    </template>
+  </LikeHeader>
   <!-- 子コンポーネントにデータを渡す送り口 -->
   <LikeNumber v-bind:totalNumber="number" ></LikeNumber>
   <!-- 子コンポーネントからデータをもらう受け口 v-on:自分で作ったemit名 = $event(データ)-->
