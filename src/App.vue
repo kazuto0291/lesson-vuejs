@@ -39,6 +39,12 @@
       <input type="checkbox" id="40" value="40代" v-model="eventData.target">
       <label for="40">40代</label>
       <p>{{ eventData.target }}</p>
+      <hr>
+      <p>参加費</p>
+      <input type="radio" id="free" value="無料" v-model="eventData.price">
+      <label for="free">無料</label>
+      <input type="radio" id="paid" value="有料" v-model="eventData.price">
+      <label for="paid">有料</label>
     </div>
     <LikeHeader >
       <h2>皆さん</h2>
@@ -83,7 +89,8 @@ import Home from "./components/Home.vue";
           host:"主催者名",
           detail: "detail",
           isPrivate: false,
-          target: []
+          target: [],
+          price: "無料"
         },
         eventLazy: {
           title: "タイトル"
