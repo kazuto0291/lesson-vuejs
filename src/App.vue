@@ -9,6 +9,10 @@
     <label for="title2">タイトル２</label>
     <input type="text" id="title2" v-model.lazy="eventLazy.title">
     <p>{{ eventLazy.title }}</p>
+    <h2>.numberフォーム</h2>
+    <label for="maxNumber">最大人数</label>
+    <input type="number" id="maxNumber" v-model.number ="eventData.maxNumber">
+    <p>{{ typeof eventData.maxNumber }}</p>
   </div>
   <LikeHeader >
     <h2>皆さん</h2>
@@ -49,7 +53,8 @@ import Home from "./components/Home.vue";
         number:10,
         currentComponent: "Home",
         eventData: {
-          title: "タイトル"
+          title: "タイトル",
+          maxNumber: 0
         },
         eventLazy: {
           title: "タイトル"
