@@ -2,9 +2,11 @@
   <div>
     <div>
       <h2>イベントのフォーム</h2>
-      <label for="title">タイトル</label>
-      <input type="text" id="title" v-model="eventData.title">
-      <pre>{{ eventData.title }}</pre>
+      <EventTitle v-model="eventData.title"></EventTitle>
+      <!-- <EventTitle
+        :value="eventData.title"
+        @input="eventData.title = $event"
+      ></EventTitle> -->
       <hr>
       <h2>Lazyのフォーム２</h2>
       <label for="title2">タイトル２</label>
@@ -45,6 +47,12 @@
       <label for="free">無料</label>
       <input type="radio" id="paid" value="有料" v-model="eventData.price">
       <label for="paid">有料</label>
+      <hr>
+      <p>開催場所</p>
+      <select v-model="eventData.lacation" multiple>
+        <option v-for="location in locations" :key="location">{{ location }}</option>
+      </select>
+      <p>{{ eventData.location}}</p>
     </div>
     <LikeHeader >
       <h2>皆さん</h2>
@@ -76,6 +84,7 @@
 import LikeHeader from  "./components/LikeHeader.vue";
 import About from "./components/About.vue";
 import Home from "./components/Home.vue";
+import EventTitle from "./components/EventTitle.vue"
 
 
   export default {
@@ -83,6 +92,7 @@ import Home from "./components/Home.vue";
       return {
         number:10,
         currentComponent: "Home",
+        locations: ["東京","神奈川", "大阪", "北海道", "奈良", "京都", "名古屋"],
         eventData: {
           title: "タイトル",
           maxNumber: 0,
@@ -90,7 +100,8 @@ import Home from "./components/Home.vue";
           detail: "detail",
           isPrivate: false,
           target: [],
-          price: "無料"
+          price: "無料",
+          location:[]
         },
         eventLazy: {
           title: "タイトル"
@@ -100,7 +111,8 @@ import Home from "./components/Home.vue";
     components: {
       LikeHeader: LikeHeader,
       About: About,
-      Home: Home
+      Home: Home,
+      EventTitle: EventTitle
     }
 
   }
