@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="main">
+      <button @click="show = !show">切り替え</button>
+      <transition name="fade">
+        <p v-if="show">hello</p>
+      </transition>
+    </div>
+    <hr>
     <div>
       <h2>イベントのフォーム</h2>
       <EventTitle v-model="eventData.title"></EventTitle>
@@ -90,6 +97,7 @@ import EventTitle from "./components/EventTitle.vue"
   export default {
     data() {
       return {
+        show: true,
         number:10,
         currentComponent: "Home",
         locations: ["東京","神奈川", "大阪", "北海道", "奈良", "京都", "名古屋"],
@@ -119,7 +127,39 @@ import EventTitle from "./components/EventTitle.vue"
 </script>
 
 <style scoped>
+  .fade-enter {
+  /* 現れるときの最初の状態 */
+  opacity: 0;
+  }
+  .fade-enter-active {
+  /* 現れるときのトランジションの状態 */
+  transition: opacity 2s;
+  }
+  .fade-enter-to {
+  /* 現れるときの最後の状態 */
+  opacity: 1;
+  }
+  .fade-leave {
+  /* 消えるときの最後の状態 */
+  opacity: 1;
+  }
+  .fade-leave-active {
+  /* 消えるときのトランジションの状態 */
+  transition: opacity 2s;
+  }
+  .fade-leave-to {
+  /* 消えるときの最後の状態 */
+  opacity: 0;
+  }
+
   div {
     border: 1px solid blue;
+  }
+
+  .main {
+    width: 70%;
+    margin: auto;
+    padding-top: 5rem;
+    text-align: center;
   }
 </style>
