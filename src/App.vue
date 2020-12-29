@@ -228,7 +228,7 @@ import ComponentB from "./components/ComponentB.vue";
             clearInterval(interval);
             done();
           }
-        }, 200)
+        }, 200);
       },
       afterLeave(el) {
         // 消えた後に実行
