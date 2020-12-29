@@ -1,6 +1,7 @@
 <template>
   <nav>
     <h2>USERS@@@@@</h2>
+    <p>{{ count }}</p>
       <router-link
         to="/home"
         class="link"
@@ -13,7 +14,11 @@
 
 <script>
 export default {
-
+  computed: {
+    count() {
+      return this.$store.state.count
+    }
+  }
 }
 </script>
 

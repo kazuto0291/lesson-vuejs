@@ -18,6 +18,12 @@
 <script>
 export default {
   props: ["id"],
+  computed: {
+    count() {
+      return this.$store.state.count
+    }
+  }
+  },
   beforeRouteEnter(to, from, next) {
     console.log('beforeRouteEnter')
     // コンポーネントが表示されるときに実行される
@@ -38,7 +44,7 @@ export default {
     if (isLeave) {
       next();
     } else {
-      next(false);
+      // next(false);
     }
   },
   watch: {
