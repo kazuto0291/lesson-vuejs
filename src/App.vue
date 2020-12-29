@@ -249,6 +249,12 @@ import ComponentB from "./components/ComponentB.vue";
   border-radius: 100px;
   background-color: deeppink;
 }
+
+  .fade-move {
+    /* transtion-groupの時使う */
+    transition: transform 1s;
+  }
+
   .fade-enter {
   /* 現れるときの最初の状態 */
   opacity: 0;
@@ -268,6 +274,8 @@ import ComponentB from "./components/ComponentB.vue";
   .fade-leave-active {
   /* 消えるときのトランジションの状態 */
   transition: opacity 5s;
+  position: absolute;
+  width: 200px;
   }
   .fade-leave-to {
   /* 消えるときの最後の状態 */
