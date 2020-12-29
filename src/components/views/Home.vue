@@ -14,16 +14,25 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    count() {
-      return this.$store.state.count
-    },
-    doubleCount() {
-      return this.$store.getters.doubleCount;
-    },
-    tripleCount() {
-      return this.$store.getters.tripleCount
-    }
+    ...mapGetters(["doubleCount", "tripleCount"])
   },
+
+  // computed: mapGetters({
+  //   // 名前が変えられる。
+  //   myComponentDoubleCount: "doubleCount"
+  // }),
+
+  // computed: {
+  //   count() {
+  //     return this.$store.state.count
+  //   },
+  //   doubleCount() {
+  //     return this.$store.getters.doubleCount;
+  //   },
+  //   tripleCount() {
+  //     return this.$store.getters.tripleCount
+  //   }
+  // },
   methods: {
     toUsers() {
       // this.$router.push('users');
