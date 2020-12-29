@@ -6,6 +6,8 @@
     <hr>
     <h1>User NO. {{ id }}</h1>
     <!-- route ナビゲーションの今の状況の情報が入っている -->
+    <router-link :to="'/users/' + (Number(id) + 1) + '/profile' ">次のユーザー</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
