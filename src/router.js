@@ -14,5 +14,8 @@ Vue.use(Router);
 
 export default new Router ({
   mode: "history",
-  routes: [{path: '/home', component: Home},{path: '/users', component: Users}]
+  routes: [
+  {path: '/home', component: Home},
+  {path: '/users/:id', component: Users, props: true}
+]
 });
