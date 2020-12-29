@@ -1,5 +1,7 @@
 <template>
   <div>
+    <router-view></router-view>
+    <router-view></router-view>
     <div class="main">
       <button @click="myAnimation = 'slide'">Slide</button>
       <button @click="myAnimation = 'fade'">Fade</button>
