@@ -4,6 +4,19 @@ import LikeNumber from "./components/LikeNumber.vue"
 import router from "./router"
 
 Vue.config.productionTip = false
+
+router.beforeEach((to, from, next) => {
+  console.log('global-beforeEach');
+  if (to.path === '/users/1') {
+    next('/');
+  }
+  // next()次に行く意味
+  next();
+  // next(false)→ページを遷移しないようにする
+  // next()
+});
+
+
 Vue.component('LikeNumber', LikeNumber);
 Vue.filter("upperCase", function(value) {
   // console.log('フィルタ')
