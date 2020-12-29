@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-view name="header"></router-view>
-    <transition name="fade" mode="out-in">
+    <transition name="fade" mode="out-in" @before-enter="beforeEnter">
       <router-view></router-view>
     </transition>
     <div class="main">
@@ -200,6 +200,9 @@ import ComponentB from "./components/ComponentB.vue";
       beforeEnter(el) {
         // 現れる前に実行
         el.style.transform = `scale(0)`;
+        // thisはApp.vue
+        // this.$root→App.vueのnew Vueインスタンスを指す。
+        this.$root.$emit('triggerScroll');
       },
       enter(el, done) {
         // 現れる時に実行

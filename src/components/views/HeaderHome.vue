@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style>
- .link {
+.link {
     margin-right: 10px;
   }
 

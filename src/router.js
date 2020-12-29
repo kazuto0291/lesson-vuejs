@@ -40,5 +40,38 @@ export default new Router ({
   {
     path: "*", redirect: {path: "/home"}
   }
-]
+],
+  scrollBehavior(to, from, savedPosition) {
+    return new Promise(resolve => {
+      // thisは、new Routerで生成したインスタンスを指す。
+      // this.appはapp.vueのnew Vueに挿入されたVueインスタンスを指す。
+      this.app.$root.$once('triggerScroll', () => {
+        // $once の中の処理が終わったらなくなる
+        let position = ({x:0, y:100});
+        if (savedPosition) {
+          position = savedPosition;
+        }
+        if (to.hash) {
+          position = {
+            selector: to.hash
+          };
+        }
+        resolve(position);
+      })
+    })
+
+    if (savedPosition) {
+      return savedPosition;
+    }
+    console.log(to, "@@@@")
+    console.log(savedPosition, "savedPosition")
+    if (to.hash) {
+      return {
+        selector: "#next-user",
+        offset: {x:0, y: 100}
+      };
+    }
+
+    return {x: 0, y:0};
+  }
 });
