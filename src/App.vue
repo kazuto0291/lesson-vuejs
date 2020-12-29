@@ -216,15 +216,15 @@ import ComponentB from "./components/ComponentB.vue";
           }
         }, 200)
       },
-      afterEnter(el) {
-        // 現れた後に実行
-      },
-      enterCancelled(el) {
-        // 現れるアニメーションがキャンセルされた時に実行
-      },
-      beforeLeave(el) {
-        // 消える前に実行
-      },
+      // afterEnter(el) {
+      //   // 現れた後に実行
+      // },
+      // enterCancelled(el) {
+      //   // 現れるアニメーションがキャンセルされた時に実行
+      // },
+      // beforeLeave(el) {
+      //   // 消える前に実行
+      // },
       leave(el, done) {
         // 消える時に実行
         let scale = 1;
@@ -237,12 +237,12 @@ import ComponentB from "./components/ComponentB.vue";
           }
         }, 200);
       },
-      afterLeave(el) {
-        // 消えた後に実行
-      },
-      leaveCancelled(el) {
-        // 消えるアニメーションがキャンセルされた時に実行
-      }
+      // afterLeave(el) {
+      //   // 消えた後に実行
+      // },
+      // leaveCancelled(el) {
+      //   // 消えるアニメーションがキャンセルされた時に実行
+      // }
     }
 
   }

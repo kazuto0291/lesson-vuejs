@@ -22,7 +22,6 @@ export default {
     count() {
       return this.$store.state.count
     }
-  }
   },
   beforeRouteEnter(to, from, next) {
     console.log('beforeRouteEnter')
