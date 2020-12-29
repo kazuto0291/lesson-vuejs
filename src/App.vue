@@ -1,5 +1,14 @@
 <template>
   <div>
+    <nav>
+      <router-link
+        to="/home"
+        class="link"
+        active-class="link--active"
+        exact
+        >Home</router-link>
+      <router-link to="/users" class="link" active-class="link--active" exact>Users</router-link>
+    </nav>
     <router-view></router-view>
     <router-view></router-view>
     <div class="main">
@@ -324,5 +333,13 @@ import ComponentB from "./components/ComponentB.vue";
     margin: auto;
     padding-top: 5rem;
     text-align: center;
+  }
+
+  .link {
+    margin-right: 10px;
+  }
+
+  .link--active {
+    font-size: 20px;
   }
 </style>
