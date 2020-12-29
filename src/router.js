@@ -4,6 +4,8 @@ import Home from './components/views/Home.vue';
 import Users from './components/views/Users.vue';
 import UsersPosts from './components/views/UsersPosts.vue';
 import UsersProfile from './components/views/UsersProfile.vue';
+import HeaderHome from './components/views/HeaderHome.vue';
+import HeaderUsers from './components/views/HeaderUsers.vue';
 
 
 // use-プラグイン（Router）を適用する
@@ -17,12 +19,18 @@ Vue.use(Router);
 export default new Router ({
   mode: "history",
   routes: [
-  {path: '/home', component: Home},
+  {path: '/home', components: {
+    default: Home,
+    header: HeaderHome
+  }},
   {path: '/users/:id',
-    component: Users,
+    components: {
+      default: Users,
+      header: HeaderUsers
+    },
     props: true,
     children: [
-      { path: "posts", component: UsersPosts},
+      { path: "posts", component: UsersPosts, name: "user-id-posts"},
       { path: "profile", componet: UsersProfile}
     ]
   }
