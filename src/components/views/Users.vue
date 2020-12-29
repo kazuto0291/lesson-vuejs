@@ -18,6 +18,29 @@
 <script>
 export default {
   props: ["id"],
+  beforeRouteEnter(to, from, next) {
+    console.log('beforeRouteEnter')
+    // コンポーネントが表示されるときに実行される
+    // thisは使えないがnextの中で使える
+    next(vm => {
+      // vueインスタンスでアクセスできるようになったときに実行する
+      // 非同期的な処理になる
+      console.log(vm.id)
+    })
+  },
+  beforeRouteUpdate(to, from, next) {
+    console.log('beforeRouteUpdate');
+    next()
+  },
+  beforeRouteLeave(to, from, next) {
+    console.log('beforeRouteLeave');
+    const isLeave = window.confirm("本当にこのページを離れますか？")
+    if (isLeave) {
+      next();
+    } else {
+      next(false);
+    }
+  },
   watch: {
     $route(to, from) {
       console.log(to);
