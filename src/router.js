@@ -36,6 +36,9 @@ export default new Router ({
       { path: "posts", component: UsersPosts, name: "user-id-posts"},
       { path: "profile", componet: UsersProfile}
     ]
+  },
+  {
+    path: "*", redirect: {path: "/home"}
   }
 ]
 });
