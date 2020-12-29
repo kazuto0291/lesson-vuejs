@@ -7,15 +7,16 @@
       <button @click="show = !show">切り替え</button>
       <hr>
       <transition
+      :css="false"
       @before-enter="beforeEnter"
       @enter="enter"
       @after-enter="afterEnter"
-      @enter-cancelled= "enterCancelled"
+      @enter-cancelled="enterCancelled"
 
       @before-leave="beforeLeave"
       @leave="Leave"
       @after-leave="afterLeave"
-      @leave-cancelled= "leaveCancelled"
+      @leave-cancelled="leaveCancelled"
       >
         <div class="circle" v-if="show"></div>
       </transition>
@@ -167,14 +168,49 @@ import ComponentB from "./components/ComponentB.vue";
       ComponentB: ComponentB,
     },
     methods: {
-      beforeEnter() {},
-      enter() {},
-      afterEnter() {},
-      enterCancelled() {},
-      beforeLeave() {},
-      leave() {},
-      afterLeave() {},
-      leaveCancelled() {}
+      beforeEnter(el) {
+        // 現れる前に実行
+        el.style.transform = `scale(0)`;
+      },
+      enter(el, done) {
+        // 現れる時に実行
+        let scale = 0;
+        const interval = setInterval(() => {
+          el.style.transform = `scale(${scale})`;
+          scale += 0.1;
+          if (scale > 1) {
+            clearInterval(interval);
+            done();
+          }
+        }, 200)
+      },
+      afterEnter(el) {
+        // 現れた後に実行
+      },
+      enterCancelled(el) {
+        // 現れるアニメーションがキャンセルされた時に実行
+      },
+      beforeLeave(el) {
+        // 消える前に実行
+      },
+      leave(el, done) {
+        // 消える時に実行
+        let scale = 1;
+        const interval = setInterval(() => {
+          el.style.transform = `scale(${scale})`;
+          scale -= 0.1;
+          if (scale < 0) {
+            clearInterval(interval);
+            done();
+          }
+        }, 200)
+      },
+      afterLeave(el) {
+        // 消えた後に実行
+      },
+      leaveCancelled(el) {
+        // 消えるアニメーションがキャンセルされた時に実行
+      }
     }
 
   }
