@@ -5,6 +5,26 @@
       <button @click="myAnimation = 'fade'">Fade</button>
       <p>{{ myAnimation }}</p>
       <button @click="show = !show">切り替え</button>
+      <hr>
+      <transition
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @enter-cancelled= "enterCancelled"
+
+      @before-leave="beforeLeave"
+      @leave="Leave"
+      @after-leave="afterLeave"
+      @leave-cancelled= "leaveCancelled"
+      >
+        <div class="circle" v-if="show"></div>
+      </transition>
+      <hr>
+      <button @click="myComponent = 'ComponentA'">ComponentA</button>
+      <button @click="myComponent = 'ComponentB'">ComponentB</button>
+      <transition name="fade" mode="out-in">
+        <component :is="myComponent"></component>
+      </transition>
       <transition name="fade" mode="out-in">
         <p v-if="show" key="bye">さよなら</p>
         <p v-if="!show" key="hello">こんにちは</p>
@@ -109,12 +129,15 @@
 import LikeHeader from  "./components/LikeHeader.vue";
 import About from "./components/About.vue";
 import Home from "./components/Home.vue";
-import EventTitle from "./components/EventTitle.vue"
+import EventTitle from "./components/EventTitle.vue";
+import ComponentA from "./components/ComponentA.vue";
+import ComponentB from "./components/ComponentB.vue";
 
 
   export default {
     data() {
       return {
+        myComponent:"ComponentA",
         show: true,
         myAnimation: "slide",
         number:10,
@@ -128,7 +151,7 @@ import EventTitle from "./components/EventTitle.vue"
           isPrivate: false,
           target: [],
           price: "無料",
-          location:[]
+          location:[],
         },
         eventLazy: {
           title: "タイトル"
@@ -139,13 +162,32 @@ import EventTitle from "./components/EventTitle.vue"
       LikeHeader: LikeHeader,
       About: About,
       Home: Home,
-      EventTitle: EventTitle
+      EventTitle: EventTitle,
+      ComponentA: ComponentA,
+      ComponentB: ComponentB,
+    },
+    methods: {
+      beforeEnter() {},
+      enter() {},
+      afterEnter() {},
+      enterCancelled() {},
+      beforeLeave() {},
+      leave() {},
+      afterLeave() {},
+      leaveCancelled() {}
     }
 
   }
 </script>
 
 <style scoped>
+.circle {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  border-radius: 100px;
+  background-color: deeppink;
+}
   .fade-enter {
   /* 現れるときの最初の状態 */
   opacity: 0;
