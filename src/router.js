@@ -1,11 +1,24 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './components/views/Home.vue';
-import Users from './components/views/Users.vue';
-import UsersPosts from './components/views/UsersPosts.vue';
-import UsersProfile from './components/views/UsersProfile.vue';
-import HeaderHome from './components/views/HeaderHome.vue';
-import HeaderUsers from './components/views/HeaderUsers.vue';
+
+// import Home from './components/views/Home.vue';
+// import Users from './components/views/Users.vue';
+// import UsersPosts from './components/views/UsersPosts.vue';
+// import UsersProfile from './components/views/UsersProfile.vue';
+// import HeaderHome from './components/views/HeaderHome.vue';
+// import HeaderUsers from './components/views/HeaderUsers.vue';
+
+
+// 動的import
+// webpack公式に書いてある
+// 必要なときだけ持ってくる
+const Home = () => import(/* webpackChunkName: "Home" */ './components/views/Home.vue');
+const Users = () => import(/* webpackChunkName: "Users" */ './components/views/Users.vue');
+const UsersPosts = () => import( /* webpackChunkName: "UsersPosts" */ './components/views/UsersPosts.vue');
+const UsersProfile = () => import( /* webpackChunkName: "UsersProfile" */'./components/views/UsersProfile.vue');
+const HeaderHome = () => import( /* webpackChunkName: "HeaderHome" */ './components/views/HeaderHome.vue');
+const HeaderUsers = () => import( /* webpackChunkName: "HeaderUsers" */ './components/views/HeaderUsers.vue');
+
 
 
 // use-プラグイン（Router）を適用する
