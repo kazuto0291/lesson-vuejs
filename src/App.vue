@@ -4,6 +4,19 @@
       <button @click="myAnimation = 'slide'">Slide</button>
       <button @click="myAnimation = 'fade'">Fade</button>
       <p>{{ myAnimation }}</p>
+      <hr>
+      <button @click="add">追加</button>
+        <ul style="width:200px; margin: auto;">
+          <transition-group name="fade" tag="div">
+          <li
+            v-for="(number, index) in numbers"
+            :key="number"
+            @click="remove(index)"
+            style="cursor:pointer;"
+            >{{ number }}</li>
+          </transition-group>
+        </ul>
+      <hr>
       <button @click="show = !show">切り替え</button>
       <hr>
       <transition
@@ -138,6 +151,8 @@ import ComponentB from "./components/ComponentB.vue";
   export default {
     data() {
       return {
+        numbers:[0, 1, 2],
+        nextNumber:3,
         myComponent:"ComponentA",
         show: true,
         myAnimation: "slide",
@@ -168,6 +183,16 @@ import ComponentB from "./components/ComponentB.vue";
       ComponentB: ComponentB,
     },
     methods: {
+      randomIndex() {
+        return Math.floor(Math.random() * this.numbers.length)
+      },
+      add() {
+        this.numbers.splice(this.randomIndex(), 0, this.nextNumber);
+        this.nextNumber += 1;
+      },
+      remove(index) {
+        this.numbers.splice(index, 1)
+      },
       beforeEnter(el) {
         // 現れる前に実行
         el.style.transform = `scale(0)`;
