@@ -5,7 +5,8 @@
     <p>{{ count }}</p>
     <p>{{ doubleCount }}</p>
     <p>{{ tripleCount }}</p>
-
+    <input type="text" v-model="message">
+    <p>{{message}}</p>
   </div>
 </template>
 
@@ -14,7 +15,19 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["doubleCount", "tripleCount"])
+    ...mapGetters(["doubleCount", "tripleCount"]),
+    // message() {
+    //   return this.$store.getters.message;
+    // }
+    message: {
+      // setter的な考え
+      get() {
+        return this.$store.getters.message;
+      },
+      set(value) {
+        this.$store.dispath("updateMessage", value);
+      }
+    }
   },
 
   // computed: mapGetters({
@@ -35,6 +48,7 @@ export default {
   // },
   methods: {
     toUsers() {
+      this.message = "hello"
       // this.$router.push('users');
       this.$router.push({ path: "users" })
       // routerはURlを切り替えるもの.ナビゲーションのそのもの
